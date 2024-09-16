@@ -25,7 +25,7 @@ def get_weather_data(city_name, api_key):
 
 def main():
     """Prompts user for city name, fetches weather data, and displays it."""
-    api_key = "YOUR_API_KEY"  # Replace with your actual API key
+    api_key = "5e756eb1b406ec434b7debcf93457aed"  # Replace with your actual API key
     city_name = input("Enter a city name: ")
 
     weather_data = get_weather_data(city_name, api_key)
