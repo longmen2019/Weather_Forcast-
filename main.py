@@ -1,6 +1,13 @@
 '''The requests library is a powerful tool for interacting with web APIs and web services. It
 simplifies the process of making HTTP requests and handling responses.'''
+import logging
 import requests
+import os
+
+# Configure logging
+"""By setting the level to logging.INFO, this code configures the logger to record messages with a severity level of 
+INFO or higher. """
+logging.basicConfig(level=logging.INFO)
 
 
 def get_weather_data(city_name, api_key):
@@ -21,25 +28,33 @@ def get_weather_data(city_name, api_key):
     """the requests_url variable constructs the full url by combining base_url, the city name, and the API_KEY"""
     url = f"{base_url}?q={city_name}&appid={api_key}"
 
-    ''' The requests.get() function sends a GET request to the constructed URL. '''
-    response = requests.get(url)
-
-    if response.status_code == 200:
+    """Error Handling: Added try-except blocks to handle HTTP and general errors."""
+    try:
+        ''' The requests.get() function sends a GET request to the constructed URL. '''
+        response = requests.get(url)
+        response.raise_for_status()
         return response.json()
-    else:
-        print(f"Error: {response.status_code}")
-        return None
-
+    except requests.exceptions.HTTPError as http_err:
+        """Configured logging to capture error and other information"""
+        logging.error(f"HTTP error occurred: {http_err}")
+    except Exception as err:
+        logging.error(f"An error occurred: {err}")
+    return None
 
 def main():
     """Prompts user for city name, fetches weather data, and displays it."""
 
     """An API key is a unique identifier used to authenticate requests associated with your account. It ensures
     that the requests you make to the OpenWeatherMap API are authorized and can be tracked."""
-    api_key = "5e756eb1b406ec434b7debcf93457aed"
+    """Moved the API key to an environment variable."""
+    api_key = os.getenv("OPENWEATHERMAP_API_KEY", "5e756eb1b406ec434b7debcf93457aed")
+    if not api_key:
+        logging.error("API key not found, Please set the OPENWEATHERMAP_API_KEY environment variable")
+        return
 
     """specifies the city for which you want to get the weather data"""
-    city_name = input("Enter a city name: ")
+    """Input Validation: Added a check to ensure the city name is not empty."""
+    city_name = input("Enter a city name: ").strip()
 
     weather_data = get_weather_data(city_name, api_key)
 
@@ -47,10 +62,16 @@ def main():
     if weather_data:
         weather = weather_data["weather"][0]["description"]
         temperature = round(weather_data["main"]["temp"] - 273.15, 2)
-        print(f"Weather in {city_name}: {weather}")
-        print(f"Temperature: {temperature} celsius")
+        print(f"Weather in {city_name.title()}: {weather.capitalize()}")  # Title city name and capitalize weather
+        # description
+        print(f"Temperature: {temperature} °C (celsius)")
+        # Offer temperature unit conversion
+        unit_choice = input("Would you like to convert to Fahrenheit (F)? (y/n): ")
+        if unit_choice.lower() == "y":
+            fahrenheit = round(temperature * 9 / 5 + 32, 2)
+            print(f"Temperature: {fahrenheit}°F (Fahrenheit)")
     else:
-        print("A error occurred while fetching weather data.")
+        print("Error fetching weather data. Please check the logs for more details.")
 
 
 if __name__ == "__main__":

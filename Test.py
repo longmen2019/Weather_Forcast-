@@ -1,60 +1,194 @@
-# Key Changes:
-# Error Handling: Added try-except blocks to handle HTTP and general errors.
-# Configuration: Moved the API key to an environment variable.
-# Input Validation: Added a check to ensure the city name is not empty.
-# Logging: Configured logging to capture errors and other information.
-# These changes should make your code more robust and easier to maintain. Let me know if you need further assistance!
-#
+Here
+are
+a
+few
+additional
+features
+you
+could
+consider
+adding
+to
+enhance
+your
+project:
 
-import requests
-import logging
-import os
+1. ** City
+Suggestions **:
+- Implement
+a
+feature
+that
+suggests
+city
+names as the
+user
+types, using
+an
+API
+like
+GeoNames or a
+local
+database.
 
-# Configure logging
-logging.basicConfig(level=logging.INFO)
+2. ** Extended
+Weather
+Information **:
+- Fetch and display
+additional
+weather
+details
+such as humidity, wind
+speed, sunrise, and sunset
+times.
+
+3. ** Historical
+Weather
+Data **:
+- Allow
+users
+to
+request
+historical
+weather
+data
+for a specific date.
+
+4. ** Weather
+Forecast **:
+- Provide
+a
+5 - day
+weather
+forecast
+using
+the
+OpenWeatherMap
+API
+'s forecast endpoint.
+
+5. ** Graphical
+Representation **:
+- Use
+a
+library
+like
+Matplotlib
+to
+plot
+temperature
+trends
+over
+a
+week or month.
+
+6. ** Unit
+Conversion **:
+- Offer
+more
+unit
+conversions, such as Kelvin
+to
+Celsius and vice
+versa.
+
+7. ** Error
+Handling
+Enhancements **:
+- Provide
+more
+detailed
+error
+messages and suggestions
+for resolving common issues (e.g., invalid city name, network issues).
+
+8. ** User
+Preferences **:
+- Allow
+users
+to
+save
+their
+preferred
+cities and units
+of
+measurement
+for quicker access.
+
+9. ** Command - Line
+Arguments **:
+- Enable
+the
+script
+to
+accept
+city
+names and API
+keys as command - line
+arguments
+for more flexibility.
+
+10. ** GUI
+Interface **:
+- Develop
+a
+simple
+graphical
+user
+interface(GUI)
+using
+Tkinter or PyQt
+for users who prefer not to use the command line.
+
+Here
+'s a small example of how you might add extended weather information:
+
+```python
 
 
-def get_weather_data(city_name, api_key):
-    """Fetches weather data for a given city using the OpenWeatherMap API
+def display_weather_data(weather_data, city_name):
+    """Displays weather data in a user-friendly format.
 
     Args:
-        city_name: The name of the city to get weather data for.
-        api_key: Your OpenWeatherMap API key.
-
-    Returns:
-        A dictionary containing weather data (or None if an error occurs).
+        weather_data (dict): The weather data to display.
+        city_name (str): The name of the city.
     """
-    base_url = "http://api.openweathermap.org/data/2.5/weather"
-    url = f"{base_url}?q={city_name}&appid={api_key}"
+    weather = weather_data["weather"][0]["description"]
+    temperature = round(weather_data["main"]["temp"] - 273.15, 2)
+    humidity = weather_data["main"]["humidity"]
+    wind_speed = weather_data["wind"]["speed"]
+    sunrise = weather_data["sys"]["sunrise"]
+    sunset = weather_data["sys"]["sunset"]
 
-    try:
-        response = requests.get(url)
-        response.raise_for_status()
-        return response.json()
-    except requests.exceptions.HTTPError as http_err:
-        logging.error(f"HTTP error occurred: {http_err}")
-    except Exception as err:
-        logging.error(f"An error occurred: {err}")
-    return None
+    print(f"Weather in {city_name.title()}: {weather.capitalize()}")
+    print(f"Temperature: {temperature} °C (celsius)")
+    print(f"Humidity: {humidity}%")
+    print(f"Wind Speed: {wind_speed} m/s")
+    print(f"Sunrise: {sunrise}")
+    print(f"Sunset: {sunset}")
 
-def main():
-    """Prompts user for city name, fetches weather data, and displays it."""
-    api_key = os.getenv("OPENWEATHERMAP_API_KEY", "your_default_api_key_here")
-    city_name = input("Enter a city name: ").strip()
+    unit_choice = input("Would you like to convert to Fahrenheit (F)? (y/n): ")
+    if unit_choice.lower() == "y":
+        fahrenheit = round(temperature * 9 / 5 + 32, 2)
+        print(f"Temperature: {fahrenheit}°F (Fahrenheit)")
 
-    if not city_name:
-        print("City name cannot be empty.")
-        return
 
-    weather_data = get_weather_data(city_name, api_key)
+```
 
-    if weather_data:
-        weather = weather_data["weather"][0]["description"]
-        temperature = round(weather_data["main"]["temp"] - 273.15, 2)
-        print(f"Weather in {city_name}: {weather}")
-        print(f"Temperature: {temperature} Celsius")
-    else:
-        print("An error occurred while fetching weather data.")
-
-if __name__ == "__main__":
-    main()
+These
+features
+can
+make
+your
+project
+more
+comprehensive and user - friendly.Let
+me
+know if you
+need
+help
+implementing
+any
+of
+these
+ideas!
