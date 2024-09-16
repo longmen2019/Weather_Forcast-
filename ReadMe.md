@@ -1,13 +1,14 @@
 # Weather Data Fetcher
 
-This project is a simple Python application that fetches weather data for a given city using the OpenWeatherMap API. It
-demonstrates how to make HTTP requests and handle responses using the `requests` library.
+The Weather Data Fetcher is a Python script that uses the `requests` library to interact with the OpenWeatherMap API. It
+fetches and displays current weather data for a specified city.
 
 ## Features
 
 - Fetches current weather data for a specified city.
 - Displays weather description and temperature in Celsius.
-- Handles errors and provides feedback to the user.
+- Offers temperature conversion to Fahrenheit.
+- Logs errors and important information.
 
 ## Requirements
 
@@ -22,30 +23,26 @@ demonstrates how to make HTTP requests and handle responses using the `requests`
     cd weather-data-fetcher
     ```
 
-2. Install the required dependencies:
+2. Install the required libraries:
     ```bash
     pip install requests
     ```
 
+3. Set up your OpenWeatherMap API key:
+   - Sign up at OpenWeatherMap to get your API key.
+   - Set the API key as an environment variable:
+       ```bash
+       export OPENWEATHERMAP_API_KEY='your_api_key_here'
+       ```
+
 ## Usage
 
-1. Obtain an API key from OpenWeatherMap.
-
-2. Set your API key as an environment variable:
-    ```bash
-    export OPENWEATHERMAP_API_KEY='your_api_key_here'
-    ```
-
-3. Run the application:
+1. Run the script:
     ```bash
     python weather_fetcher.py
     ```
 
-4. Enter the name of the city when prompted.
+2. Enter the name of the city when prompted.
 
-## Example
-
-```bash
-Enter a city name: London
-Weather in London: clear sky
-Temperature: 15.32 Celsius
+3. The script will display the current weather description and temperature in Celsius. You will also have the option to
+   convert the temperature to Fahrenheit.
