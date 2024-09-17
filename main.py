@@ -61,10 +61,24 @@ def main():
     # Check if the request was successful
     if weather_data:
         weather = weather_data["weather"][0]["description"]
+        country = weather_data["sys"]["country"]
         temperature = round(weather_data["main"]["temp"] - 273.15, 2)
+        feels_like = round(weather_data["main"]["feels_like"] - 273.15, 2)
+        humidity = weather_data["main"]["humidity"]
+        wind_speed = weather_data["wind"]["speed"]
+        sunrise = weather_data["sys"]["sunrise"]
+        sunset = weather_data["sys"]["sunset"]
+
         print(f"Weather in {city_name.title()}: {weather.capitalize()}")  # Title city name and capitalize weather
         # description
+        print(f"Country: {country}")
         print(f"Temperature: {temperature} °C (celsius)")
+        print(f"Feels_like: {feels_like} °C (celsius)")
+        print(f"Humidity: {humidity}%")
+        print(f"wind_speed : {wind_speed} m/s")
+        print(f"sunrise: {sunrise}")
+        print(f"sunset: {sunset}")
+
         # Offer temperature unit conversion
         unit_choice = input("Would you like to convert to Fahrenheit (F)? (y/n): ")
         if unit_choice.lower() == "y":
