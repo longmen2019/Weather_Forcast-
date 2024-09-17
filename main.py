@@ -75,9 +75,9 @@ def main():
         print(f"Temperature: {temperature} °C (celsius)")
         print(f"Feels_like: {feels_like} °C (celsius)")
         print(f"Humidity: {humidity}%")
-        print(f"wind_speed : {wind_speed} m/s")
-        print(f"sunrise: {sunrise}")
-        print(f"sunset: {sunset}")
+        print(f"Wind_speed : {wind_speed} m/s")
+        print(f"Sunrise: {sunrise}")
+        print(f"Sunset: {sunset}")
 
         # Offer temperature unit conversion
         unit_choice = input("Would you like to convert to Fahrenheit (F)? (y/n): ")
