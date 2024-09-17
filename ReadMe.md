@@ -1,48 +1,60 @@
-# Weather Data Fetcher
+## Python Weather App - Get Weather Data for Any City
 
-The Weather Data Fetcher is a Python script that uses the `requests` library to interact with the OpenWeatherMap API. It
-fetches and displays current weather data for a specified city.
+This Python project provides a simple command-line application to retrieve weather data for a city of your choice using
+the OpenWeatherMap API.
 
-## Features
+**Features:**
 
-- Fetches current weather data for a specified city.
-- Displays weather description and temperature in Celsius.
-- Offers temperature conversion to Fahrenheit.
-- Logs errors and important information.
+* Fetches current weather information including description, temperature, feels like, humidity, wind speed, sunrise, and
+  sunset.
+* Offers conversion between Celsius (°C) and Fahrenheit (°F).
+* Utilizes environment variables for secure storage of your API key.
+* Employs error handling with informative logs to troubleshoot issues.
 
-## Requirements
+**Requirements:**
 
-- Python 3.x
-- `requests` library
+* Python 3.x
+* `requests` library (install using `pip install requests`)
+* An OpenWeatherMap API key (get yours from [https://openweathermap.org/api](https://openweathermap.org/api))
 
-## Installation
+**Installation:**
 
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/yourusername/weather-data-fetcher.git
-    cd weather-data-fetcher
-    ```
+1. Clone this repository or download the files.
+2. Install the `requests` library: `pip install requests`
 
-2. Install the required libraries:
-    ```bash
-    pip install requests
-    ```
+**Usage:**
 
-3. Set up your OpenWeatherMap API key:
-   - Sign up at OpenWeatherMap to get your API key.
-   - Set the API key as an environment variable:
-       ```bash
-       export OPENWEATHERMAP_API_KEY='your_api_key_here'
-       ```
+1. Set your OpenWeatherMap API key in an environment variable named `OPENWEATHERMAP_API_KEY`. Refer to your platform's
+   documentation for setting environment variables.
+2. Run the script: `python main.py`
+3. Enter the name of the city you want weather data for.
+4. The script will display the retrieved weather information.
+5. (Optional) Choose to convert the temperature to Fahrenheit.
 
-## Usage
+**Example Output:**
 
-1. Run the script:
-    ```bash
-    python weather_fetcher.py
-    ```
+```
+Enter a city name: London
 
-2. Enter the name of the city when prompted.
+Weather in London: Cloudy
+Country: GB
+Temperature: 18.23 °C (celsius)
+Feels_like: 17.32 °C (celsius)
+Humidity: 78%
+wind_speed: 2.1 m/s
+sunrise: 1663374333
+sunset: 1663422272
 
-3. The script will display the current weather description and temperature in Celsius. You will also have the option to
-   convert the temperature to Fahrenheit.
+Would you like to convert to Fahrenheit (F)? (y/n): y
+Temperature: 64.81°F (Fahrenheit)
+```
+
+**Further Enhancements (Optional):**
+
+* Integrate weather icons for a more visual representation.
+* Add support for retrieving weather forecasts for multiple days.
+* Implement a graphical user interface (GUI) for a more user-friendly experience.
+
+**Contribution:**
+
+Feel free to contribute to this project by creating pull requests with additional features or improvements. 
