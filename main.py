@@ -47,7 +47,7 @@ def main():
     """An API key is a unique identifier used to authenticate requests associated with your account. It ensures
     that the requests you make to the OpenWeatherMap API are authorized and can be tracked."""
     """Moved the API key to an environment variable."""
-    api_key = os.getenv("OPENWEATHERMAP_API_KEY", "5e756eb1b406ec434b7debcf93457aed")
+    api_key = os.getenv("OPENWEATHERMAP_API_KEY", "YOUR API KEY")
     if not api_key:
         logging.error("API key not found, Please set the OPENWEATHERMAP_API_KEY environment variable")
         return
