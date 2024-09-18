@@ -1,8 +1,10 @@
 '''The requests library is a powerful tool for interacting with web APIs and web services. It
 simplifies the process of making HTTP requests and handling responses.'''
+import datetime
 import logging
 import requests
 import os
+
 
 # Configure logging
 """By setting the level to logging.INFO, this code configures the logger to record messages with a severity level of 
@@ -47,7 +49,7 @@ def main():
     """An API key is a unique identifier used to authenticate requests associated with your account. It ensures
     that the requests you make to the OpenWeatherMap API are authorized and can be tracked."""
     """Moved the API key to an environment variable."""
-    api_key = os.getenv("OPENWEATHERMAP_API_KEY", "YOUR API KEY")
+    api_key = os.getenv("OPENWEATHERMAP_API_KEY", "5e756eb1b406ec434b7debcf93457aed")
     if not api_key:
         logging.error("API key not found, Please set the OPENWEATHERMAP_API_KEY environment variable")
         return
@@ -66,8 +68,8 @@ def main():
         feels_like = round(weather_data["main"]["feels_like"] - 273.15, 2)
         humidity = weather_data["main"]["humidity"]
         wind_speed = weather_data["wind"]["speed"]
-        sunrise = weather_data["sys"]["sunrise"]
-        sunset = weather_data["sys"]["sunset"]
+        sunrise = datetime.datetime.fromtimestamp(weather_data["sys"]["sunrise"])
+        sunset = datetime.datetime.fromtimestamp(weather_data["sys"]["sunset"])
 
         print(f"Weather in {city_name.title()}: {weather.capitalize()}")  # Title city name and capitalize weather
         # description

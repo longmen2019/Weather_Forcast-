@@ -1,12 +1,12 @@
 ## Python Weather App - Get Weather Data for Any City
 
-This Python project provides a simple command-line application to retrieve weather data for a city of your choice using
-the OpenWeatherMap API.
+This Python project provides a simple command-line application to retrieve current weather data for any city of your
+choice using the OpenWeatherMap API.
 
 **Features:**
 
 * Fetches current weather information including description, temperature, feels like, humidity, wind speed, sunrise, and
-  sunset.
+  sunset times (in human-readable format).
 * Offers conversion between Celsius (°C) and Fahrenheit (°F).
 * Utilizes environment variables for secure storage of your API key.
 * Employs error handling with informative logs to troubleshoot issues.
@@ -41,9 +41,9 @@ Country: GB
 Temperature: 18.23 °C (celsius)
 Feels_like: 17.32 °C (celsius)
 Humidity: 78%
-wind_speed: 2.1 m/s
-sunrise: 1663374333
-sunset: 1663422272
+Wind_speed: 2.1 m/s
+Sunrise: 2024-09-18 06:56:50
+Sunset: 2024-09-18 19:22:12
 
 Would you like to convert to Fahrenheit (F)? (y/n): y
 Temperature: 64.81°F (Fahrenheit)
@@ -57,4 +57,4 @@ Temperature: 64.81°F (Fahrenheit)
 
 **Contribution:**
 
-Feel free to contribute to this project by creating pull requests with additional features or improvements. 
+Feel free to contribute to this project by creating pull requests with additional features or improvements.
